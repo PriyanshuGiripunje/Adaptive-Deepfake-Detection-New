@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Deepfake Detector</title>
+    <style>
+        body { font-family: Arial; margin: 40px; }
+        .container { width: 400px; margin: auto; text-align: center; }
+        img { width: 300px; margin-top: 20px; border-radius: 10px; }
+        .result { font-size: 22px; font-weight: bold; margin-top: 20px; }
+        .upload-box { border: 2px dashed #666; padding: 20px; }
+        button { margin-top: 10px; padding: 10px 20px; font-size: 16px; }
+    </style>
+</head>
+
+<body>
+<div class="container">
+
+    <h1>Deepfake Detection</h1>
+
+    <form action="/predict" method="POST" enctype="multipart/form-data">
+        <div class="upload-box">
+            <input type="file" name="image" accept="image/*" required>
+        </div>
+        <button type="submit">Analyze Image</button>
+    </form>
+
+    {% if file_path %}
+    <h3>Uploaded Image:</h3>
+    <img src="{{ file_path }}">
+    {% endif %}
+
+    {% if result %}
+    <div class="result">{{ result }}</div>
+    {% endif %}
+
+</div>
+</body>
+</html>
